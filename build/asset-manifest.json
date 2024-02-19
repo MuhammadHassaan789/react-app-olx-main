@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.9518071d.css",
+    "main.js": "/static/js/main.8ac6bc90.js",
+    "static/js/592.c679da4c.chunk.js": "/static/js/592.c679da4c.chunk.js",
+    "static/media/fashion.png": "/static/media/fashion.02eb8c3eea64f8e1e893.png",
+    "static/media/electronics.png": "/static/media/electronics.6dba4cca6034ad4f92b2.png",
+    "static/media/sale.png": "/static/media/sale.d86637bde6a93fb4d6f9.png",
+    "static/media/sports.png": "/static/media/sports.05f595d17933377a3a87.png",
+    "static/media/cars.png": "/static/media/cars.7d0c58607e7386985800.png",
+    "static/media/furniture.png": "/static/media/furniture.e1b4971e6066751b2b0a.png",
+    "static/media/paint.png": "/static/media/paint.170d977ba06a76a8d204.png",
+    "static/media/bike.png": "/static/media/bike.c33876790ba68e20a0ab.png",
+    "static/media/rent.png": "/static/media/rent.25c571e8a741927515ae.png",
+    "static/media/slick.svg": "/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/index.html",
+    "main.9518071d.css.map": "/static/css/main.9518071d.css.map",
+    "main.8ac6bc90.js.map": "/static/js/main.8ac6bc90.js.map",
+    "592.c679da4c.chunk.js.map": "/static/js/592.c679da4c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9518071d.css",
+    "static/js/main.8ac6bc90.js"
+  ]
+}

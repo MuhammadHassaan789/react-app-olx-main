@@ -1,0 +1,288 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+.category-img {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+/* DRAWER */
+
+.cart-con {
+    cursor: pointer;
+    animation: cartAni 0.5s ease;
+    transition: 0.2s ease;
+}
+
+@keyframes cartAni {
+    from {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.cart-con:hover {
+    background: #2c69eb;
+}
+
+.cart-drawer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cross-btn {
+    float: right;
+    cursor: pointer;
+    background-color: #444444;
+    color: var(--light);
+    font-size: 12px;
+    padding: 2.5px 8px;
+    border-radius: 5px;
+}
+
+.lists-con {
+    margin-top: -15px;
+    margin-bottom: 185px;
+}
+
+.list-con {
+    transition: transform 3s ease-in-out;
+    transform: translateX(-110%);
+    pointer-events: none;
+}
+
+.item-list-qty {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.item-list-qty>div:nth-child(1) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.item-list-qty>div:nth-child(1)>div:nth-child(1) {
+    font-weight: 500;
+    color: #126373;
+}
+
+.item-list-qty>div:nth-child(1)>div:nth-child(2) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.item-list-qty>div:nth-child(1)>div:nth-child(2)>p {
+    margin: 0;
+    color: var(--dark);
+}
+
+.deleteAni {
+    animation-name: deleteAni;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes deleteAni {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    to {
+        opacity: 0.4;
+        transform: translateX(-110%);
+    }
+}
+
+.quan-con {
+    position: absolute;
+    width: 90%;
+    left: 50%;
+    transform: translate(-50%);
+    bottom: 0px;
+    z-index: 5;
+    background: #fff;
+    color: var(--dark);
+    padding: 10px;
+    padding-bottom: 20px;
+    border-top: 1px solid #cacaca;
+}
+
+.num-con {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.num-con>div {
+    display: flex;
+    align-items: center;
+}
+
+.num-con>div:nth-child(1) p {
+    font-weight: 600;
+    font-size: 21px;
+}
+
+.quan-con p {
+    margin: 5px;
+    font-size: 17px;
+}
+
+.quan-con>div:nth-child(2) h5 {
+    font-weight: 600;
+    text-align: center;
+    font-size: 13px;
+    margin: 10px;
+}
+
+.checkout-btn {
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 19px;
+    background: #204dad;
+    font-weight: 500;
+    color: var(--light);
+    padding: 7px;
+    transition: 0.2s ease;
+}
+
+.checkout-btn:hover {
+    background: #2c69eb;
+}
+
+.checkout-btn:active {
+    opacity: 0.8;
+}
+
+.cart-item {
+    transition: transform 0.3s ease-in-out;
+}
+
+.cart-item.deleted {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+.drawer-cart-img {
+    width: 70px !important;
+    height: 70px !important;
+    object-fit: contain;
+    display: flex;
+}
+
+.order-list {
+    align-items: flex-start !important;
+    position: relative;
+}
+
+.checkout-price {
+    color: #126373;
+    font-weight: 600;
+    font-size: 19px;
+}
+
+.checkout-item-qty {
+    position: absolute;
+    left: 85px;
+    top: 0;
+    background-color: rgba(148, 154, 163, 0.95);
+    color: var(--light);
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.empty-cart {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 18px;
+}
+
+.empty-cart>p {
+    width: fit-content;
+    border-bottom: 1px solid #2c69eb;
+    font-weight: 500;
+    margin: 0;
+}
+
+.quan-btn {
+    background: #d7d7d7;
+    color: #202020;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center !important;
+    align-items: center;
+    font-weight: 300;
+    border: none;
+    font-size: 20px !important;
+    cursor: pointer;
+}
+
+.drawer-trash-con {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.drawer-trash {
+    color: #d54d4d;
+    transition: 0.1s ease;
+}
+
+.drawer-trash:hover {
+    color: #d54d4dc4;
+}
+
+.quan-btn:hover {
+    background: #d7d7d7;
+}
+
+.quan-btn:active {
+    opacity: 0.9;
+}
+
+.btn-disabled {
+    cursor: default;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.add-button {
+    width: 100%;
+    font-size: 15px !important;
+}
+
+.ant-list-item {
+    list-style: none;
+    padding-left: 0;
+}

@@ -1,0 +1,40 @@
+.price-title {
+    border: 1px rgb(180, 180, 180) solid;
+    width: 60vh;
+}
+
+
+.details-ad {
+    border: 1px rgb(180, 180, 180) solid;
+    width: 60vh;
+    height: 30vh;
+}
+
+
+.contact {
+    border: 1px rgb(180, 180, 180) solid;
+    width: 60vh;
+    height: 30vh;
+}
+
+@media (max-width: 1024px) {
+    .contact {
+        margin-left: 0px;
+        margin-bottom: 12px;
+    }
+}
+
+@media (max-width: 524px) {
+    .img,
+    .price-title,
+    .details-ad,
+    .contact {
+        width: 40vh;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+
+
