@@ -44,9 +44,9 @@ const Lists = () => {
                             renderItem={(item, index) => {
                                 return (
                                     <List.Item
-                                        key={item?.uid}
+                                        key={item?.adId}
                                     >
-                                        <NavLink to={`/`} style={{ width: '100%' }}>
+                                        <NavLink to={`/detail/${item?.adId}`} style={{ width: '100%', textDecoration : 'none' }}>
                                             <List.Item.Meta
                                                 avatar={<img className='drawer-cart-img' src={item?.images[0]} alt='cart' />}
 
@@ -74,6 +74,7 @@ const Lists = () => {
                                                         </div>
 
                                                         <div className='item-list-qty'>
+                                                        <p className='m-0'>QTY : {item.qty}</p>
                                                             <div
                                                                 className='drawer-trash-con'
                                                                 style={{ cursor: 'pointer' }}
@@ -82,7 +83,7 @@ const Lists = () => {
                                                                     Quantity:{state}
                                                                 </Button> */}
                                                                 <IoMdTrash
-                                                                    onClick={(e) => handleRemoveItem(e, item.id)}
+                                                                    onClick={(e) => handleRemoveItem(e, item.adId)}
                                                                     color='red' size={20} />
                                                             </div>
                                                         </div>

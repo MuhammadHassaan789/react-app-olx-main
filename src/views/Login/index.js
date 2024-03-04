@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom"
 import { login, getCurrentUser } from '../../config/firebase'
 import './input.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Input } from "antd";
+import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 
 export default function Login() {
     const navigate = useNavigate()
@@ -43,7 +45,7 @@ export default function Login() {
             <form className="Auth-form">
                 <div className="Auth-form-content">
                     <h3 className="Auth-form-title">Sign In</h3>
-                    <div className="text-center">
+                    <div className="text-start">
                         Not registered yet?{" "}
                         <span onClick={() => navigate('/register')} className="link-primary">
                             Register
@@ -51,30 +53,33 @@ export default function Login() {
                     </div>
                     <div className="form-group mt-3">
                         <label>Email address</label>
-                        <input
+                        <Input
                             onChange={(e) => setEmail(e.target.value)}
                             type="email"
-                            className="form-control mt-1"
+                            // className="form-control mt-1"
+                            size="large"
                             placeholder="Enter email"
                         />
                     </div>
                     <div className="form-group mt-3">
                         <label>Password</label>
-                        <input
+                        <Input.Password
                             onChange={(e) => setPassword(e.target.value)}
-                            type="password"
-                            className="form-control mt-1"
+                            type="input password"
+                            iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+                            // className="form-control mt-1"
+                            size="large"
                             placeholder="Enter password"
                         />
                     </div>
-                    <div className="d-grid gap-2 mt-3">
-                        <button onClick={(e) => signin(e)} className="btn btn-primary">
-                            Submit
-                        </button>
-                    </div>
-                    <p onClick={() => navigate('/reset')} className="text-center mt-2 cursor-pointer">
+                    <p onClick={() => navigate('/reset')} className="text-end mt-4 cursor-pointer">
                         Forgot password?
                     </p>
+                    <div className="d-grid gap-2 mt-2">
+                        <button onClick={(e) => signin(e)} className="btn btn-primary">
+                            Login
+                        </button>
+                    </div>
                 </div>
             </form>
         </div>

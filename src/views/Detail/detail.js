@@ -82,7 +82,7 @@ const Detail = () => {
           <div className="details-ad my-4 rounded-lg">
             <h5 className="mb-2 text-xl font-medium leading-tight  mt-2 ml-3">Description</h5>
             <p className="ml-3">{getAd?.details}</p>
-            <Button onClick={() => dispatch(updateCart(getAd))} className='my-4 ml-3'>Add to Cart</Button>
+            <Button onClick={() => dispatch(updateCart({...getAd, adId}))} className='my-4 ml-3'>Add to Cart</Button>
           </div>
         </div>
         <div className="contact ml-4 rounded-lg">
