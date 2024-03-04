@@ -84,8 +84,6 @@ function Navbar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [user, setUser] = React.useState(null);
-  const theme = useSelector(state => state.theme)
-  const dispatch = useDispatch()
   const [open, setOpen] = useState(false)
   const [anchorEl, setAnchorEl] = React.useState(null);
   const cart = useSelector(state => state.cart)

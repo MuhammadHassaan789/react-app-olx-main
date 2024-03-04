@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { getFirestore, collection, getDocs, addDoc, getDoc, doc, setDoc, query, where } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import Swal from 'sweetalert2'
 
 
 const firebaseConfig = {
@@ -38,7 +39,7 @@ function handleLoginResult(result) {
   const token = credential.accessToken;
 
   const user = result.user;
-  console.log(user)
+  // console.log(user)
   localStorage.setItem('uid', user.uid)
   alert('Successful login:', user);
 }
@@ -52,15 +53,25 @@ function handleLoginError(error) {
 
   const credential = GoogleAuthProvider.credentialFromError(error);
 
-  console.error('Login error:', errorCode, errorMessage, email, credential);
+  // console.error('Login error:', errorCode, errorMessage, email, credential);
 }
 
 const handleLogout = () => {
   signOut(auth).then(() => {
     localStorage.removeItem('uid')
-    alert('Logged out')
+    Swal.fire({
+      title: 'Success!',
+      text: 'Logged out Successfully!',
+      icon: 'success',
+      confirmButtonText: 'Ok'
+    })
   }).catch((error) => {
-    alert(error)
+    Swal.fire({
+      title: 'Error!',
+      text: 'Error Logging out!',
+      icon: 'error',
+      confirmButtonText: 'Ok'
+    })
   });
 }
 
@@ -72,7 +83,7 @@ export async function getAllProducts(category) {
     const products = [];
 
     if (category) {
-      console.log("CATEGORY FETCHING")
+      // console.log("CATEGORY FETCHING")
       const categoryData = query(adsCollection, where("category", "==", String(category.toLowerCase())))
 
       const querySnapshot = await getDocs(categoryData);
@@ -81,26 +92,26 @@ export async function getAllProducts(category) {
         products.push(productData);
       });
 
-      console.log("CATEGORY FETCHED", categoryData)
+      // console.log("CATEGORY FETCHED", categoryData)
 
 
       return products;
 
     } else {
-      console.log("ALL DATA FETCHING")
+      // console.log("ALL DATA FETCHING")
       const querySnapshot = await getDocs(adsCollection);
 
       querySnapshot.forEach((doc) => {
         const productData = { id: doc.id, ...doc.data() };
         products.push(productData);
       });
-      console.log("ALL DATA FETCHED")
+      // console.log("ALL DATA FETCHED")
 
       return products;
     }
 
   } catch (error) {
-    console.error('Error fetching products:', error);
+    console.log('Error fetching products:', error);
     throw error;
   }
 }
@@ -118,17 +129,17 @@ export async function getSingleAd(adId) {
     const ad = docSnap.data();
 
     const userRef = doc(db, "users", ad.uid);
-    console.log('userRef', userRef.path);
+    // console.log('userRef', userRef.path);
     const userSnap = await getDoc(userRef);
 
     if (userSnap.exists()) {
       const userData = userSnap.data();
-      console.log('userSnap data', userData);
+      // console.log('userSnap data', userData);
     } else {
       console.log("No such user document!");
     }
 
-    console.log('ad', ad);
+    // console.log('ad', ad);
     return ad;
   } else {
     console.log("No such document!");
@@ -138,7 +149,7 @@ export async function getSingleAd(adId) {
 
 
 export async function register(user) {
-  console.log(user);
+  // console.log(user);
   const { email, password, fullname } = user;
 
   try {
@@ -150,12 +161,21 @@ export async function register(user) {
       email: email,
     });
 
-    console.log('Registered Successfully:', userCredential.user);
+    Swal.fire({
+      title: 'Success!',
+      text: 'Registered Successfully:',
+      icon: 'success',
+      confirmButtonText: 'Ok'
+    });
 
-    alert('Registered Successfully');
   } catch (error) {
     console.error('Registration error:', error.code, error.message);
-    alert(`Registration failed. Error: ${error.message}`);
+    Swal.fire({
+      title: 'Error!',
+      text: `Registration failed. Error: ${error.message}`,
+      icon: 'error',
+      confirmButtonText: 'Ok'
+    })
   }
 }
 
@@ -166,7 +186,12 @@ export async function login(user) {
   const currentUser = await getCurrentUser();
 
   if (currentUser) {
-    alert('User is already logged in.');
+    Swal.fire({
+      title: 'Success!',
+      text: 'User already Logged in',
+      icon: 'success',
+      confirmButtonText: 'Ok'
+    });
     return null;
   }
 
@@ -174,7 +199,12 @@ export async function login(user) {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
 
     const user = userCredential.user;
-    alert('Login Successfully!');
+    Swal.fire({
+      title: 'Success!',
+      text: 'Logged in Successfully!',
+      icon: 'success',
+      confirmButtonText: 'Ok'
+    });
     const uid = user.uid;
     localStorage.setItem('uid', uid);
 
@@ -186,7 +216,12 @@ export async function login(user) {
 
   } catch (error) {
     const errorMessage = error.message;
-    alert(`Login failed. Error: ${errorMessage}`);
+    Swal.fire({
+      title: 'Error!',
+      text: `Login failed. Error: ${errorMessage}`,
+      icon: 'error',
+      confirmButtonText: 'Ok'
+    })
     return null; // Returning null for failure
   }
 }

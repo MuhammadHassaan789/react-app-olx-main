@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Input } from 'antd';
 import Button from '@mui/material/Button';
 import { Select } from 'antd';
+import Swal from 'sweetalert2';
 
 import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 import { Icon } from 'leaflet';
@@ -22,10 +23,10 @@ const { TextArea } = Input;
 
 
 const onChange = (value) => {
-    console.log(`selected ${value}`);
+    // console.log(`selected ${value}`);
 };
 const onSearch = (value) => {
-    console.log('search:', value);
+    // console.log('search:', value);
 };
 
 const filterOption = (input, option) =>
@@ -46,7 +47,7 @@ function Postad() {
             try {
                 navigator.geolocation.getCurrentPosition(
                     (position) => {
-                        console.log("position", position);
+                        // console.log("position", position);
                         const { latitude, longitude } = position.coords;
                         setMarkerCoords([latitude, longitude]);
                     },
@@ -55,7 +56,12 @@ function Postad() {
                     }
                 );
             } catch (error) {
-                console.error('Error getting geolocation:', error.message);
+                Swal.fire({
+                    title: 'Error!',
+                    text: `Error getting geolocation:', ${error.message}`,
+                    icon: 'success',
+                    confirmButtonText: 'Ok'
+                });
             }
         };
 
@@ -65,7 +71,7 @@ function Postad() {
 
     const handlePost = async (e) => {
         e.preventDefault();
-        console.log('running');
+        // console.log('running');
         try {
             const uid = localStorage.getItem('uid');
 
@@ -79,10 +85,15 @@ function Postad() {
                 coords: { latitude: markerCoords[0], longitude: markerCoords[1] },
             };
 
-            console.log('handlePost: adDetails', adDetails);
+            // console.log('handlePost: adDetails', adDetails);
 
             await addDoc(collection(db, "ads"), { ...adDetails, images });
-            alert('Posted successfully!');
+            Swal.fire({
+                title: 'Success!',
+                text: 'Posted successfully!',
+                icon: 'success',
+                confirmButtonText: 'Ok'
+              });
             setImages('');
             setTitle('');
             setPrice('');
@@ -90,7 +101,12 @@ function Postad() {
             setCategory('')
             setContact('')
         } catch (error) {
-            console.log(error);
+            Swal.fire({
+                title: 'Error!',
+                text: 'Error posting your ad!',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+              });
         }
     };
 
@@ -98,7 +114,7 @@ function Postad() {
     const handleChange = async (imageNames) => {
         try {
             const imageFiles = imageNames.target.files;
-            console.log('Selected Files:', imageFiles);
+            // console.log('Selected Files:', imageFiles);
             const imageUrls = [];
 
             for (const image of imageFiles) {
@@ -107,11 +123,16 @@ function Postad() {
                 const url = await getDownloadURL(storageRef);
                 imageUrls.push(url);
             }
-            console.log('Image URLs:', imageUrls);
+            // console.log('Image URLs:', imageUrls);
             setImages(imageUrls);
-            console.log(images)
+            // console.log(images)
         } catch (e) {
-            alert(e.message);
+            Swal.fire({
+                title: 'Error!',
+                text: `Error getting geolocation:', ${e.message}`,
+                icon: 'success',
+                confirmButtonText: 'Ok'
+            });
         }
     };
 

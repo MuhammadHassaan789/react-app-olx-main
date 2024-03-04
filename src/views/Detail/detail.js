@@ -4,10 +4,10 @@ import { useParams } from 'react-router-dom';
 import { getSingleAd, auth, onAuthStateChanged } from '../../config/firebase';
 import Slider from "react-slick";
 import { Button } from 'antd';
-import cartSlice from '../../store/cartSlice';
 import { updateCart } from '../../store/cartSlice';
 import './input.css';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const Detail = () => {
   const dispatch = useDispatch()
@@ -18,6 +18,7 @@ const Detail = () => {
   const [clickedImage, setClickedImage] = useState()
 
   const { adId } = useParams();
+  const navigate = useNavigate();
 
   var settings = {
     dots: true,
@@ -52,7 +53,7 @@ const Detail = () => {
   const closeImageViewer = () => {
     setImageViewerOpen(false);
   };
-  
+
 
   return (
     <div>
@@ -82,7 +83,12 @@ const Detail = () => {
           <div className="details-ad my-4 rounded-lg">
             <h5 className="mb-2 text-xl font-medium leading-tight  mt-2 ml-3">Description</h5>
             <p className="ml-3">{getAd?.details}</p>
-            <Button onClick={() => dispatch(updateCart({...getAd, adId}))} className='my-4 ml-3'>Add to Cart</Button>
+            <Button
+              onClick={user ? () => dispatch(updateCart({ ...getAd, adId })) : () => navigate('/login')}
+              className='my-4 ml-3'
+            >
+              Add to Cart
+            </Button>
           </div>
         </div>
         <div className="contact ml-4 rounded-lg">
@@ -97,12 +103,14 @@ const Detail = () => {
           </p>
         </div>
       </div>
-      {isImageViewerOpen && clickedImage && (
-        <div className="img">
-          <ImageViewer imageUrl={clickedImage} onClose={closeImageViewer} />
-        </div>
-      )}
-    </div>
+      {
+        isImageViewerOpen && clickedImage && (
+          <div className="img">
+            <ImageViewer imageUrl={clickedImage} onClose={closeImageViewer} />
+          </div>
+        )
+      }
+    </div >
   );
 };
 

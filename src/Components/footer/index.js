@@ -1,10 +1,11 @@
-import './index.css'
+import './index.css';
+
 const Footer = () => {
     return (
         <div className="footer-clean">
             <footer>
                 <div className="container">
-                    <div className="flex justify-around flex-wrap gap-10">
+                    <div className="flex flex-wrap justify-around gap-5 md:gap-10">
                         <div className="item">
                             <h3>Services</h3>
                             <ul>
@@ -31,18 +32,14 @@ const Footer = () => {
                         </div>
                         <div className="item social">
                             <a href="https://www.facebook.com/smart.xander.77">
-                                <i className="icon ion-social-facebook">
-                                    <img
-                                        src="https://4.bp.blogspot.com/-qYwreqeIN6w/XN0LzjGE2GI/AAAAAAAAAl8/wYzmo96AHKAsbLQ-jYawLem2CJZVr-hYgCLcBGAs/s1600/facebook-logo-Grey-%2Bhigh%2Bresolution.png"
-                                        alt="" width="43px" />
-                                </i>
+                                <img
+                                    src="https://4.bp.blogspot.com/-qYwreqeIN6w/XN0LzjGE2GI/AAAAAAAAAl8/wYzmo96AHKAsbLQ-jYawLem2CJZVr-hYgCLcBGAs/s1600/facebook-logo-Grey-%2Bhigh%2Bresolution.png"
+                                    alt="Facebook" width="30px" />
                             </a>
                             <a href="https://www.instagram.com/itx_hassaan_55/" target="_blank" rel="noopener">
-                                <i className="icon ion-social-facebook">
-                                    <img
-                                        src="https://totalpng.com//public/uploads/preview/instagram-grey-logo-png-hd-copy-11656657483bsurpsft3i.png"
-                                        alt="" width="43px" />
-                                </i>
+                                <img
+                                    src="https://totalpng.com//public/uploads/preview/instagram-grey-logo-png-hd-copy-11656657483bsurpsft3i.png"
+                                    alt="Instagram" width="30px" />
                             </a>
                             <p className="copyright">Reach me!</p>
                         </div>
@@ -53,4 +50,4 @@ const Footer = () => {
     )
 }
 
-export default Footer
+export default Footer;

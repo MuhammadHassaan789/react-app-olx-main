@@ -18,7 +18,7 @@ const Dashboard = () => {
 
     const getAds = async () => {
         const res = await getAllProducts()
-        console.log('res', res)
+        // console.log('res', res)
         setAds(res)
     }
 

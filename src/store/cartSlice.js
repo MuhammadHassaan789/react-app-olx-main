@@ -15,21 +15,19 @@ const cartSlice = createSlice({
             const newItem = data.payload;
             const existingItemIndex = findItemIndex(state.cart, newItem);
 
-            console.log('existingItemIndex', existingItemIndex)
-            console.log('newItem', newItem)
+            // console.log('existingItemIndex', existingItemIndex)
+            // console.log('newItem', newItem)
 
             if (existingItemIndex !== -1) {
-                console.log('Quantity Increasing')
+                // console.log('Quantity Increasing')
                 state.cart[existingItemIndex].qty += 1;
-
                 notification['info']({
-                    message: 'Item already in cart',
+                    message: 'Already in the cart, Quantity Increased!',
                     placement: 'bottomRight',
                     duration: 1
                 });
-
             } else {
-                console.log('Added')
+                // console.log('Added')
                 state.cart.push({ ...newItem, qty: 1 });
                 notification['success']({
                     message: 'Item added to the cart',
@@ -38,7 +36,7 @@ const cartSlice = createSlice({
                 });
             }
 
-            console.log('updating cart', state.cart);
+            // console.log('updating cart', state.cart);
         },
 
         removeCart: (state, action) => {
