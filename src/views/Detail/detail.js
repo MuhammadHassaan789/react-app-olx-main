@@ -3,11 +3,13 @@ import ImageViewer from '../../Components/ImageViewer/ImageViewer';
 import { useParams } from 'react-router-dom';
 import { getSingleAd, auth, onAuthStateChanged } from '../../config/firebase';
 import Slider from "react-slick";
-import { Button } from 'antd';
+// import { Button } from 'antd';
+import { Button } from '@mui/material';
 import { updateCart } from '../../store/cartSlice';
 import './input.css';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { Call, CallEnd, MailOutline } from '@mui/icons-material';
 
 const Detail = () => {
   const dispatch = useDispatch()
@@ -56,18 +58,16 @@ const Detail = () => {
 
 
   return (
-    <div>
-      <div className="mb-10 flex justify-center">
-        <img src="https://tpc.googlesyndication.com/simgad/7591501326855415024" alt="" />
-      </div>
-      <div className="main-div flex justify-center flex-wrap">
-        <div className="w-[60vh] h-[100vh]">
+    <div className='mb-52'>
+      <div className="main-div flex justify-center flex-wrap gap-7 my-10 w-full">
+        {/* Image section */}
+        <div className="md:w-[60vh] w-full">
           {getAd && getAd.images && getAd.images.length > 0 && (
             <Slider {...settings}>
               {getAd.images.map((image, index) => (
                 <div className="img" key={index}>
                   <img
-                    className="w-[60vh] h-[50vh] rounded-lg"
+                    className="w-full h-[50vh] rounded-lg"
                     src={image}
                     alt=""
                     onClick={() => openImageViewer(image)}
@@ -76,31 +76,45 @@ const Detail = () => {
               ))}
             </Slider>
           )}
-          <div className="price-title my-4 rounded-lg ">
-            <h1 className="mb-2 mt-0 text-5xl font-medium leading-tight ml-3">Rs.{getAd?.amount}</h1>
-            <h3 className="mb-2 mt-0 text-3xl font-medium leading-tight ml-3">{getAd?.title}</h3>
-          </div>
-          <div className="details-ad my-4 rounded-lg">
-            <h5 className="mb-2 text-xl font-medium leading-tight  mt-2 ml-3">Description</h5>
-            <p className="ml-3">{getAd?.details}</p>
-            <Button
-              onClick={user ? () => dispatch(updateCart({ ...getAd, adId })) : () => navigate('/login')}
-              className='my-4 ml-3'
-            >
-              Add to Cart
-            </Button>
-          </div>
         </div>
-        <div className="contact ml-4 rounded-lg">
-          <h4 className="mb-2 mt-0 text-2xl font-medium leading-tight ml-3">Contact Info</h4>
-          <p className="ml-3">Email:</p>
-          <p className='ml-3'>
-            {user?.email}
-          </p>
-          <p className="ml-3 mt-3">Contact:</p>
-          <p className='ml-3'>
-            {getAd?.contact}
-          </p>
+
+        {/* Detail section */}
+        <div className='md:flex-grow-0 flex-grow p-2'>
+
+          <div className="">
+            <h3 className="text-4xl font-bold">{getAd?.title}</h3>
+            <h1 className="text-3xl text-indigo-600 font-semibold mt-3">
+              <span className='text-xl'>RS. </span>
+              {getAd?.amount}</h1>
+            <p className="">{getAd?.details}</p>
+          </div>
+          <div className="my-4 contact-con">
+            <h4 className="text-2xl mb-3 font-semibold">Contact Info</h4>
+            <p className="font-semibold text-xl ">Email</p>
+            <div className='flex gap-2 items-center'>
+              <MailOutline />
+              <p className='text-xl'>
+                {user?.email}
+              </p>
+            </div>
+            <p className="font-semibold mt-2 text-xl">Contact</p>
+            <div className='flex gap-2 items-center'>
+              <Call />
+              <p className='text-xl'>
+                {getAd?.contact}
+              </p>
+            </div>
+          </div>
+
+          <Button
+            variant="contained"
+            size='large'
+            className='m-0'
+            onClick={user ? () => dispatch(updateCart({ ...getAd, adId })) : () => navigate('/login')}
+            className='my-4 ml-3'
+          >
+            Add to Cart
+          </Button>
         </div>
       </div>
       {

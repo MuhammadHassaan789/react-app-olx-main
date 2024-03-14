@@ -2,7 +2,7 @@ import './index.css';
 
 const Footer = () => {
     return (
-        <div className="footer-clean">
+        <div className="footer-clean bottom-0 w-full left-0">
             <footer>
                 <div className="container">
                     <div className="flex flex-wrap justify-around gap-5 md:gap-10">
